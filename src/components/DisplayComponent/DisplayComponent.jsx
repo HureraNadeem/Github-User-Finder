@@ -15,8 +15,8 @@ function DisplayComponent(props) {
         profileUrl: "",
     });
     useEffect(() => {
-        // fetch(`https://api.github.com/users/${props.userName}`)
-        fetch()
+        fetch(`https://api.github.com/users/${props.userName}`)
+            // fetch()
             .then(results => results.json())
             .then((data) => {
                 setuserdata(
@@ -26,7 +26,7 @@ function DisplayComponent(props) {
                         followers: data.followers,
                         following: data.following,
                         repositories: data.public_repos,
-                        profileUrl: data.url,
+                        profileUrl: data.html_url,
                         location: data.location,
                         bio: data.bio,
                     }
@@ -37,7 +37,7 @@ function DisplayComponent(props) {
     return (
         <>
             <div className="main_div">
-                <div className="picture_div d-flex justify-content-center">
+                <div className="picture_div d-flex justify-content-center flex-wrap">
                     <img src={userdata.picture} />
                 </div>
                 <div className="name_div d-flex flex-column justify-content-center">
@@ -45,7 +45,7 @@ function DisplayComponent(props) {
                     <h3 id="bio">{userdata.bio}</h3>
                 </div>
                 <div className="data-div d-flex flex-wrap justify-content-center">
-                    <div className="data_element d-flex justify-content-center">
+                    <div className="data_element d-flex justify-content-center flex-wrap">
                         <h6 className="bio_heading">
                             Followers:
                         </h6>
@@ -53,7 +53,7 @@ function DisplayComponent(props) {
                             {userdata.followers}
                         </h6>
                     </div>
-                    <div className="data_element d-flex justify-content-center">
+                    <div className="data_element d-flex justify-content-center flex-wrap">
                         <h6 className="bio_heading">
                             Following:
                         </h6>
@@ -61,7 +61,7 @@ function DisplayComponent(props) {
                             {userdata.following}
                         </h6>
                     </div>
-                    <div className="data_element d-flex justify-content-center">
+                    <div className="data_element d-flex justify-content-center flex-wrap">
                         <h6 className="bio_heading">
                             Repositories:
                         </h6>
@@ -69,7 +69,7 @@ function DisplayComponent(props) {
                             {userdata.repositories}
                         </h6>
                     </div>
-                    <div className="data_element d-flex justify-content-center">
+                    <div className="data_element d-flex justify-content-center flex-wrap">
                         <h6 className="bio_heading">
                             Location:
                         </h6>
@@ -77,12 +77,14 @@ function DisplayComponent(props) {
                             {userdata.location}
                         </h6>
                     </div>
-                    <div className="data_element d-flex justify-content-center">
+                    <div className="data_element d-flex justify-content-center flex-wrap">
                         <h6 className="bio_heading">
                             Github Profile URL :
                         </h6>
                         <h6>
-                            {userdata.url}
+                            <a href={userdata.profileUrl} target="_blank">
+                                {userdata.profileUrl}</a>
+
                         </h6>
                     </div>
                 </div>
