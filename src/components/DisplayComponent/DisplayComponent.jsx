@@ -84,7 +84,6 @@ function DisplayComponent(props) {
                         <h6>
                             <a href={userdata.profileUrl} target="_blank">
                                 {userdata.profileUrl}</a>
-
                         </h6>
                     </div>
                 </div>
